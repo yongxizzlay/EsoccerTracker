@@ -1,0 +1,136 @@
+date,stage,player_a,player_b,goals_a,goals_b,source
+2026-03-04,Showmatch (sim),Mark11,Gueric,11,4,Simulated demo
+2026-03-05,FC Pro Leagues (sim),levyfinn,Jonny,9,10,Simulated demo
+2026-03-06,FC Pro Open (sim),Obrun2002,Jonny,11,8,Simulated demo
+2026-03-07,Showmatch (sim),Brice,Jonny,7,16,Simulated demo
+2026-03-07,FC Pro Leagues (sim),Jonny,KSofuoglu,9,9,Simulated demo
+2026-03-07,FC Pro Open (sim),Tekkz,Neat,7,7,Simulated demo
+2026-03-08,FC Pro Open (sim),Obrun2002,Neat,8,12,Simulated demo
+2026-03-08,Showmatch (sim),Obrun2002,Caccia98,11,4,Simulated demo
+2026-03-09,FC Pro Open (sim),Neat,Tekkz,22,13,Simulated demo
+2026-03-10,FC Pro Open (sim),Brice,GuiBarros,10,9,Simulated demo
+2026-03-10,Showmatch (sim),Brice,Neat,7,9,Simulated demo
+2026-03-11,Showmatch (sim),Neat,Obrun2002,5,6,Simulated demo
+2026-03-15,FC Pro Open (sim),GuiBarros,Neat,6,9,Simulated demo
+2026-03-15,FC Pro Leagues (sim),Tekkz,levyfinn,11,6,Simulated demo
+2026-03-16,FC Pro Leagues (sim),Neat,Mark11,8,9,Simulated demo
+2026-03-24,Showmatch (sim),GuiBarros,Jonny,6,13,Simulated demo
+2026-03-25,FC Pro Open (sim),Neat,levyfinn,12,11,Simulated demo
+2026-03-26,FC Pro Leagues (sim),Caccia98,Mark11,10,9,Simulated demo
+2026-03-26,Showmatch (sim),GuiBarros,levyfinn,11,9,Simulated demo
+2026-03-27,FC Pro Leagues (sim),KSofuoglu,Tekkz,11,10,Simulated demo
+2026-03-30,FC Pro Open (sim),GuiBarros,Neat,9,9,Simulated demo
+2026-03-30,FC Pro Leagues (sim),Gueric,Obrun2002,6,6,Simulated demo
+2026-03-31,FC Pro Open (sim),Caccia98,levyfinn,14,10,Simulated demo
+2026-03-31,Showmatch (sim),GuiBarros,Caccia98,10,8,Simulated demo
+2026-04-01,FC Pro Leagues (sim),Brice,Mark11,11,8,Simulated demo
+2026-04-02,Showmatch (sim),Obrun2002,Gueric,14,9,Simulated demo
+2026-04-04,FC Pro Open (sim),Caccia98,Brice,8,14,Simulated demo
+2026-04-05,FC Pro Leagues (sim),Tekkz,Mark11,11,6,Simulated demo
+2026-04-05,FC Pro Leagues (sim),Caccia98,Brice,16,6,Simulated demo
+2026-04-08,FC Pro Open (sim),Caccia98,Mark11,8,15,Simulated demo
+2026-04-09,Showmatch (sim),Caccia98,Obrun2002,7,10,Simulated demo
+2026-04-09,FC Pro Leagues (sim),Obrun2002,Jonny,17,10,Simulated demo
+2026-04-11,FC Pro Open (sim),GuiBarros,Tekkz,4,15,Simulated demo
+2026-04-12,FC Pro Leagues (sim),Mark11,Gueric,7,11,Simulated demo
+2026-04-12,FC Pro Open (sim),KSofuoglu,Caccia98,7,10,Simulated demo
+2026-04-14,Showmatch (sim),GuiBarros,Caccia98,5,11,Simulated demo
+2026-04-15,Showmatch (sim),Tekkz,GuiBarros,4,9,Simulated demo
+2026-04-16,FC Pro Open (sim),Neat,Tekkz,12,12,Simulated demo
+2026-04-20,FC Pro Open (sim),Gueric,KSofuoglu,5,12,Simulated demo
+2026-04-22,FC Pro Open (sim),Gueric,KSofuoglu,8,15,Simulated demo
+2026-04-22,Showmatch (sim),Neat,Gueric,14,6,Simulated demo
+2026-04-23,FC Pro Leagues (sim),GuiBarros,Tekkz,6,12,Simulated demo
+2026-04-24,FC Pro Leagues (sim),KSofuoglu,Obrun2002,5,13,Simulated demo
+2026-04-24,FC Pro Open (sim),Jonny,Gueric,4,5,Simulated demo
+2026-04-26,Showmatch (sim),Obrun2002,Jonny,7,10,Simulated demo
+2026-04-26,FC Pro Open (sim),GuiBarros,Mark11,8,9,Simulated demo
+2026-04-27,FC Pro Leagues (sim),levyfinn,Mark11,10,8,Simulated demo
+2026-04-30,FC Pro Open (sim),Obrun2002,Jonny,15,8,Simulated demo
+2026-05-01,Showmatch (sim),Tekkz,levyfinn,13,4,Simulated demo
+2026-05-02,FC Pro Leagues (sim),levyfinn,GuiBarros,10,11,Simulated demo
+2026-05-02,FC Pro Leagues (sim),Neat,Tekkz,8,12,Simulated demo
+2026-05-02,Showmatch (sim),Neat,KSofuoglu,5,9,Simulated demo
+2026-05-04,Showmatch (sim),Jonny,GuiBarros,11,5,Simulated demo
+2026-05-04,FC Pro Leagues (sim),Neat,Jonny,7,5,Simulated demo
+2026-05-08,FC Pro Open (sim),KSofuoglu,Neat,13,11,Simulated demo
+2026-05-08,Showmatch (sim),Tekkz,Brice,8,11,Simulated demo
+2026-05-09,FC Pro Open (sim),Neat,GuiBarros,18,6,Simulated demo
+2026-05-11,FC Pro Open (sim),Obrun2002,Brice,16,7,Simulated demo
+2026-05-11,FC Pro Leagues (sim),Obrun2002,Mark11,8,10,Simulated demo
+2026-05-11,FC Pro Leagues (sim),Tekkz,levyfinn,12,5,Simulated demo
+2026-05-13,FC Pro Leagues (sim),levyfinn,Tekkz,5,10,Simulated demo
+2026-05-13,FC Pro Leagues (sim),Neat,KSofuoglu,10,12,Simulated demo
+2026-05-17,Showmatch (sim),Caccia98,Neat,5,10,Simulated demo
+2026-05-21,FC Pro Leagues (sim),Mark11,levyfinn,4,5,Simulated demo
+2026-05-21,Showmatch (sim),Brice,Gueric,7,9,Simulated demo
+2026-05-23,Showmatch (sim),GuiBarros,Obrun2002,6,12,Simulated demo
+2026-05-24,FC Pro Leagues (sim),Jonny,Mark11,7,7,Simulated demo
+2026-05-26,Showmatch (sim),Neat,levyfinn,21,4,Simulated demo
+2026-05-26,Showmatch (sim),Jonny,Neat,7,4,Simulated demo
+2026-05-26,Showmatch (sim),KSofuoglu,Obrun2002,11,5,Simulated demo
+2026-05-29,FC Pro Open (sim),Brice,levyfinn,8,12,Simulated demo
+2026-05-30,FC Pro Open (sim),Gueric,GuiBarros,12,5,Simulated demo
+2026-06-01,FC Pro Leagues (sim),GuiBarros,KSofuoglu,5,10,Simulated demo
+2026-06-01,FC Pro Open (sim),Caccia98,Tekkz,14,10,Simulated demo
+2026-06-02,Showmatch (sim),Caccia98,Tekkz,7,12,Simulated demo
+2026-06-02,FC Pro Open (sim),Obrun2002,GuiBarros,16,3,Simulated demo
+2026-06-04,Showmatch (sim),Neat,Caccia98,13,10,Simulated demo
+2026-06-04,FC Pro Open (sim),GuiBarros,Brice,7,5,Simulated demo
+2026-06-05,FC Pro Leagues (sim),Gueric,Tekkz,4,8,Simulated demo
+2026-06-06,Showmatch (sim),Mark11,Neat,7,12,Simulated demo
+2026-06-07,FC Pro Leagues (sim),Mark11,Neat,10,14,Simulated demo
+2026-06-07,FC Pro Leagues (sim),GuiBarros,levyfinn,10,11,Simulated demo
+2026-06-08,Showmatch (sim),Mark11,Tekkz,5,7,Simulated demo
+2026-06-08,FC Pro Open (sim),KSofuoglu,Mark11,14,7,Simulated demo
+2026-06-08,FC Pro Open (sim),Caccia98,GuiBarros,12,6,Simulated demo
+2026-06-08,Showmatch (sim),Neat,Jonny,13,11,Simulated demo
+2026-06-10,Showmatch (sim),levyfinn,KSofuoglu,6,6,Simulated demo
+2026-06-11,FC Pro Leagues (sim),Gueric,Obrun2002,10,14,Simulated demo
+2026-06-13,FC Pro Leagues (sim),Obrun2002,Gueric,10,5,Simulated demo
+2026-06-15,FC Pro Leagues (sim),Mark11,Jonny,5,13,Simulated demo
+2026-06-15,Showmatch (sim),Neat,KSofuoglu,7,14,Simulated demo
+2026-06-15,FC Pro Leagues (sim),Mark11,levyfinn,9,11,Simulated demo
+2026-06-16,FC Pro Open (sim),Tekkz,Obrun2002,12,13,Simulated demo
+2026-06-16,FC Pro Leagues (sim),Neat,Obrun2002,5,10,Simulated demo
+2026-06-17,FC Pro Leagues (sim),Neat,Jonny,18,8,Simulated demo
+2026-06-18,Showmatch (sim),Jonny,Brice,12,12,Simulated demo
+2026-06-19,Showmatch (sim),GuiBarros,Tekkz,13,8,Simulated demo
+2026-06-19,FC Pro Open (sim),Mark11,Brice,12,13,Simulated demo
+2026-06-19,FC Pro Leagues (sim),Neat,levyfinn,12,4,Simulated demo
+2026-06-20,FC Pro Open (sim),Tekkz,Jonny,7,9,Simulated demo
+2026-06-20,FC Pro Open (sim),Obrun2002,Gueric,13,10,Simulated demo
+2026-06-21,FC Pro Leagues (sim),Mark11,Obrun2002,9,11,Simulated demo
+2026-06-21,FC Pro Leagues (sim),Brice,KSofuoglu,9,15,Simulated demo
+2026-06-22,FC Pro Open (sim),Mark11,Gueric,3,6,Simulated demo
+2026-06-22,FC Pro Open (sim),KSofuoglu,Jonny,14,8,Simulated demo
+2026-06-23,Showmatch (sim),Tekkz,Gueric,8,12,Simulated demo
+2026-06-23,FC Pro Leagues (sim),Caccia98,Obrun2002,8,17,Simulated demo
+2026-06-24,FC Pro Open (sim),Brice,GuiBarros,12,7,Simulated demo
+2026-06-24,Showmatch (sim),Jonny,GuiBarros,9,6,Simulated demo
+2026-06-25,Showmatch (sim),Tekkz,GuiBarros,18,6,Simulated demo
+2026-06-26,FC Pro Open (sim),Caccia98,Gueric,8,9,Simulated demo
+2026-06-28,Showmatch (sim),Gueric,Tekkz,9,8,Simulated demo
+2026-06-29,FC Pro Open (sim),Mark11,Obrun2002,8,12,Simulated demo
+2026-06-30,Showmatch (sim),KSofuoglu,Neat,8,11,Simulated demo
+2026-06-30,FC Pro Leagues (sim),levyfinn,GuiBarros,3,0,Simulated demo
+2026-07-03,FC Pro Open (sim),Caccia98,levyfinn,16,7,Simulated demo
+2026-07-03,FC Pro Open (sim),Gueric,Caccia98,8,5,Simulated demo
+2026-07-03,Showmatch (sim),Tekkz,Mark11,8,10,Simulated demo
+2026-07-04,Showmatch (sim),Tekkz,KSofuoglu,11,14,Simulated demo
+2026-07-05,Showmatch (sim),Neat,Caccia98,7,10,Simulated demo
+2026-07-06,FC Pro Open (sim),Obrun2002,Gueric,15,7,Simulated demo
+2026-07-06,FC Pro Open (sim),Tekkz,GuiBarros,13,5,Simulated demo
+2026-07-06,FC Pro Open (sim),Tekkz,Brice,20,13,Simulated demo
+2026-07-07,Showmatch (sim),Brice,GuiBarros,9,11,Simulated demo
+2026-07-08,FC Pro Leagues (sim),levyfinn,Brice,6,8,Simulated demo
+2026-07-08,Showmatch (sim),Caccia98,KSofuoglu,4,9,Simulated demo
+2026-07-09,FC Pro Open (sim),Neat,Gueric,9,11,Simulated demo
+2026-07-09,Showmatch (sim),Jonny,GuiBarros,19,5,Simulated demo
+2026-07-10,FC Pro Open (sim),Brice,Caccia98,7,12,Simulated demo
+2026-07-10,FC Pro Open (sim),GuiBarros,Obrun2002,4,17,Simulated demo
+2026-07-17,EWC 2026 Play-Ins,Obrun2002,GuiBarros,15,2,EWC 2026 Play-Ins (real)
+2026-07-17,EWC 2026 Play-Ins,Caccia98,Mark11,9,8,EWC 2026 Play-Ins (real)
+2026-07-17,EWC 2026 Play-Ins,KSofuoglu,Brice,13,7,EWC 2026 Play-Ins (real)
+2026-07-17,EWC 2026 Play-Ins,Gueric,levyfinn,14,7,EWC 2026 Play-Ins (real)
+2026-07-17,EWC 2026 Play-Ins,Neat,Tekkz,17,6,EWC 2026 Play-Ins (real)
