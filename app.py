@@ -332,25 +332,29 @@ with tab_predict:
 # ------------------------------------------------------- live esportsbattle ----
 with tab_live:
     st.markdown(
-        "Live schedule and results from "
-        "[football.esportsbattle.com](https://football.esportsbattle.com). "
-        "History trains the model; upcoming matches get win/draw/win and "
-        "over/under estimates."
+        "Rolling prediction board for "
+        "[football.esportsbattle.com](https://football.esportsbattle.com) — "
+        "recent results train the model, and every upcoming match gets the "
+        "chance of each player winning, a draw, and the total-goals "
+        "over/under."
     )
     st.info(
-        "**Model estimates, not betting advice.** ESportsBattle matches are "
-        "short (2×4 or 2×6 min), high-variance, and bookmakers price them "
-        "with more data than this. Expect the model to be wrong often."
+        "**Model estimates, not betting advice.** Short, high-variance "
+        "matches; bookmakers have more data than this. Expect it to be "
+        "wrong often."
     )
 
-    lc1, lc2, lc3, lc4 = st.columns(4)
+    lc1, lc2, lc3, lc4, lc5 = st.columns(5)
     hist_hours = lc1.slider("History window (hours)", 6, 72, 24, step=6)
-    ahead_hours = lc2.slider("Look ahead (hours)", 1, 24, 8)
+    ahead_hours = lc2.slider("Look ahead (hours)", 1, 24, 4)
     live_line = lc3.number_input("O/U line (per match)", 0.5, 20.5, 5.5,
                                  step=1.0, key="live_line")
     tz_name = lc4.selectbox("Show times in", ["Pacific/Auckland", "UTC"])
+    refresh_s = lc5.selectbox("Auto-refresh", [60, 120, 300, 0],
+                              format_func=lambda s: f"every {s}s" if s
+                              else "off")
 
-    @st.cache_data(ttl=600, show_spinner=False)
+    @st.cache_data(ttl=55, show_spinner=False)
     def _esb_pull(hist_h: int, ahead_h: int):
         from datetime import datetime, timedelta, timezone
         now = datetime.now(timezone.utc)
@@ -363,88 +367,125 @@ with tab_live:
                     t, esb.fetch_tournament_matches(t["id"])))
             except Exception:
                 continue  # skip a tournament that errors; keep the rest
-        return esb.split_finished_upcoming(rows), len(tourns)
+        return esb.split_finished_upcoming(rows), len(tourns), now
 
-    if st.button("Fetch / refresh ESportsBattle data", type="primary"):
-        _esb_pull.clear()
+    @st.fragment(run_every=refresh_s or None)
+    def live_board():
+        from datetime import datetime, timezone
+        try:
+            with st.spinner("Pulling tournaments and matches…"):
+                (fin, up), n_tourns, pulled = _esb_pull(hist_hours,
+                                                        ahead_hours)
+        except Exception as e:
+            st.error(f"Could not reach the ESportsBattle API: {e}")
+            return
 
-    try:
-        with st.spinner("Pulling tournaments and matches…"):
-            (fin, up), n_tourns = _esb_pull(hist_hours, ahead_hours)
-    except Exception as e:
-        st.error(f"Could not reach the ESportsBattle API: {e}")
-        st.stop()
+        now = datetime.now(timezone.utc)
+        stamp = now.astimezone(__import__("zoneinfo")
+                               .ZoneInfo(tz_name)).strftime("%H:%M:%S")
+        st.caption(f"Last refreshed {stamp} ({tz_name}) — data re-pulled at "
+                   "most once a minute; the board re-renders "
+                   + (f"every {refresh_s}s." if refresh_s else "manually."))
 
-    if fin.empty:
-        st.warning("No finished matches in this window — widen the history "
-                   "slider.")
-        st.stop()
+        if fin.empty:
+            st.warning("No finished matches in this window — widen the "
+                       "history slider.")
+            return
 
-    leagues = sorted(set(fin.stage) | set(up.stage if not up.empty else []))
-    lsel = st.multiselect(
-        "Leagues (match formats differ — compare like with like)",
-        leagues, default=leagues,
-    )
-    fin_f = fin[fin.stage.isin(lsel)]
-    up_f = up[up.stage.isin(lsel)] if not up.empty else up
+        leagues = sorted(set(fin.stage)
+                         | (set(up.stage) if not up.empty else set()))
+        lsel = st.multiselect(
+            "Leagues (formats differ — compare like with like)",
+            leagues, default=leagues,
+        )
+        fin_f = fin[fin.stage.isin(lsel)]
+        up_f = up[up.stage.isin(lsel)] if not up.empty else up
+        if not up_f.empty:
+            up_f = up_f[up_f.date > now]  # drop already-kicked-off games
 
-    k1, k2, k3, k4 = st.columns(4)
-    k1.metric("Finished matches", f"{len(fin_f)}")
-    k2.metric("Tournaments scanned", f"{n_tourns}")
-    k3.metric("Avg total goals", f"{fin_f.total_goals.mean():.2f}")
-    k4.metric(f"Over {live_line} hit rate",
-              f"{(fin_f.total_goals > live_line).mean():.0%}")
+        k1, k2, k3, k4 = st.columns(4)
+        k1.metric("Finished matches", f"{len(fin_f)}")
+        k2.metric("Tournaments scanned", f"{n_tourns}")
+        k3.metric("Avg total goals", f"{fin_f.total_goals.mean():.2f}"
+                  if len(fin_f) else "–")
+        k4.metric(f"Over {live_line} hit rate",
+                  f"{(fin_f.total_goals > live_line).mean():.0%}"
+                  if len(fin_f) else "–")
 
-    if up_f.empty:
-        st.warning("No scheduled matches in the look-ahead window.")
-    else:
+        if up_f.empty or fin_f.empty:
+            st.warning("No upcoming matches (or no history) in the current "
+                       "selection.")
+            return
+
         hist_df = fin_f[["date", "stage", "player_a", "player_b",
                          "goals_a", "goals_b", "source"]].copy()
         preds = []
-        for _, r in up_f.iterrows():
+        for _, r in up_f.sort_values("date").iterrows():
             try:
                 p = core.predict(hist_df, r.player_a, r.player_b,
                                  line=live_line, allow_unknown=True)
             except ValueError:
                 continue
-            when = r.date.tz_convert(tz_name)
+            mins = int((r.date - now).total_seconds() // 60)
             thin = min(p.n_a, p.n_b) < 5
             preds.append({
-                "Kick-off": when.strftime("%H:%M"),
+                "Kick-off": r.date.tz_convert(tz_name).strftime("%H:%M"),
+                "In": f"{mins}m",
                 "League": r.stage,
-                "Match": (f"{r.player_a}"
-                          + (f" ({r.team_a})" if pd.notna(r.team_a) else "")
-                          + " v " + f"{r.player_b}"
-                          + (f" ({r.team_b})" if pd.notna(r.team_b) else "")),
-                "Sample": f"{p.n_a}/{p.n_b}" + (" ⚠" if thin else ""),
-                "P(1)": p.p_win_a, "P(X)": p.p_draw, "P(2)": p.p_win_b,
-                "Fair 1": p.fair_odds(p.p_win_a),
-                "Fair X": p.fair_odds(p.p_draw),
-                "Fair 2": p.fair_odds(p.p_win_b),
-                "E[goals]": p.expected_total,
-                f"P(o{live_line})": p.p_over,
-                f"Fair over": p.fair_odds(p.p_over),
+                "Match": f"{r.player_a} v {r.player_b}",
+                "Games played": f"{p.n_a} / {p.n_b}"
+                                + (" ⚠" if thin else ""),
+                "1st wins": p.p_win_a, "Draw": p.p_draw,
+                "2nd wins": p.p_win_b,
+                "Odds 1st": p.fair_odds(p.p_win_a),
+                "Odds draw": p.fair_odds(p.p_draw),
+                "Odds 2nd": p.fair_odds(p.p_win_b),
+                "Likely goals": p.expected_total,
+                f"Over {live_line}": p.p_over,
+                "Odds over": p.fair_odds(p.p_over),
+                f"Under {live_line}": p.p_under,
+                "Odds under": p.fair_odds(p.p_under),
             })
-        if preds:
-            pdf = pd.DataFrame(preds)
-            pct_cols = ["P(1)", "P(X)", "P(2)", f"P(o{live_line})"]
-            odd_cols = ["Fair 1", "Fair X", "Fair 2", "Fair over"]
-            st.markdown(f"**Upcoming matches ({len(pdf)})** — times in "
-                        f"{tz_name}. ⚠ = fewer than 5 matches of history for "
-                        "a player (prediction leans on the league average).")
-            st.dataframe(
-                pdf.style.format({c: "{:.0%}" for c in pct_cols}
-                                | {c: "{:.2f}" for c in odd_cols}
-                                | {"E[goals]": "{:.1f}"}),
-                use_container_width=True, hide_index=True,
-            )
-        else:
-            st.warning("Couldn't build predictions for the scheduled matches.")
+        if not preds:
+            st.warning("Couldn't build predictions for the scheduled "
+                       "matches.")
+            return
 
-    with st.expander("Recent results used to train the model"):
+        pdf = pd.DataFrame(preds)
+        show_odds = st.checkbox(
+            "Show break-even odds columns", value=True,
+            help="The decimal odds that would exactly match each chance "
+                 "(1 ÷ chance). A bookmaker price HIGHER than this is "
+                 "better than the model thinks the chance is worth.",
+        )
+        pct = ["1st wins", "Draw", "2nd wins",
+               f"Over {live_line}", f"Under {live_line}"]
+        odd = ["Odds 1st", "Odds draw", "Odds 2nd",
+               "Odds over", "Odds under"]
+        if not show_odds:
+            pdf = pdf.drop(columns=odd)
+        st.markdown(
+            f"**Next {len(pdf)} matches** — times in {tz_name}. "
+            "*1st wins / 2nd wins* = chance the first- or second-named "
+            "player in **Match** wins; *Draw* = chance it ends level; "
+            "*Likely goals* = expected total goals from both players; "
+            f"*Over/Under {live_line}* = chance the total lands above or "
+            "below that line. *Games played* = matches of recent history "
+            "per player (⚠ = fewer than 5, so treat with extra doubt).")
         st.dataframe(
-            fin_f.sort_values("date", ascending=False)[
-                ["date", "stage", "player_a", "goals_a",
-                 "goals_b", "player_b"]],
+            pdf.style.format({c: "{:.0%}" for c in pct}
+                            | ({c: "{:.2f}" for c in odd}
+                               if show_odds else {})
+                            | {"Likely goals": "{:.1f}"}),
             use_container_width=True, hide_index=True,
         )
+
+        with st.expander("Recent results used to train the model"):
+            st.dataframe(
+                fin_f.sort_values("date", ascending=False)[
+                    ["date", "stage", "player_a", "goals_a",
+                     "goals_b", "player_b"]],
+                use_container_width=True, hide_index=True,
+            )
+
+    live_board()
