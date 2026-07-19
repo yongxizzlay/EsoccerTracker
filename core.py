@@ -1,142 +1,176 @@
-date,stage,player_a,player_b,goals_a,goals_b,source
-2026-03-04,Showmatch (sim),Mark11,Gueric,11,4,Simulated demo
-2026-03-05,FC Pro Leagues (sim),levyfinn,Jonny,9,10,Simulated demo
-2026-03-06,FC Pro Open (sim),Obrun2002,Jonny,11,8,Simulated demo
-2026-03-07,FC Pro Open (sim),Tekkz,Neat,7,7,Simulated demo
-2026-03-07,Showmatch (sim),Brice,Jonny,7,16,Simulated demo
-2026-03-07,FC Pro Leagues (sim),Jonny,KSofuoglu,9,9,Simulated demo
-2026-03-08,FC Pro Open (sim),Obrun2002,Neat,8,12,Simulated demo
-2026-03-08,Showmatch (sim),Obrun2002,Caccia98,11,4,Simulated demo
-2026-03-09,FC Pro Open (sim),Neat,Tekkz,22,13,Simulated demo
-2026-03-10,Showmatch (sim),Brice,Neat,7,9,Simulated demo
-2026-03-10,FC Pro Open (sim),Brice,GuiBarros,10,9,Simulated demo
-2026-03-11,Showmatch (sim),Neat,Obrun2002,5,6,Simulated demo
-2026-03-15,FC Pro Leagues (sim),Tekkz,levyfinn,11,6,Simulated demo
-2026-03-15,FC Pro Open (sim),GuiBarros,Neat,6,9,Simulated demo
-2026-03-16,FC Pro Leagues (sim),Neat,Mark11,8,9,Simulated demo
-2026-03-24,Showmatch (sim),GuiBarros,Jonny,6,13,Simulated demo
-2026-03-25,FC Pro Open (sim),Neat,levyfinn,12,11,Simulated demo
-2026-03-26,Showmatch (sim),GuiBarros,levyfinn,11,9,Simulated demo
-2026-03-26,FC Pro Leagues (sim),Caccia98,Mark11,10,9,Simulated demo
-2026-03-27,FC Pro Leagues (sim),KSofuoglu,Tekkz,11,10,Simulated demo
-2026-03-30,FC Pro Open (sim),GuiBarros,Neat,9,9,Simulated demo
-2026-03-30,FC Pro Leagues (sim),Gueric,Obrun2002,6,6,Simulated demo
-2026-03-31,FC Pro Open (sim),Caccia98,levyfinn,14,10,Simulated demo
-2026-03-31,Showmatch (sim),GuiBarros,Caccia98,10,8,Simulated demo
-2026-04-01,FC Pro Leagues (sim),Brice,Mark11,11,8,Simulated demo
-2026-04-02,Showmatch (sim),Obrun2002,Gueric,14,9,Simulated demo
-2026-04-04,FC Pro Open (sim),Caccia98,Brice,8,14,Simulated demo
-2026-04-05,FC Pro Leagues (sim),Tekkz,Mark11,11,6,Simulated demo
-2026-04-05,FC Pro Leagues (sim),Caccia98,Brice,16,6,Simulated demo
-2026-04-08,FC Pro Open (sim),Caccia98,Mark11,8,15,Simulated demo
-2026-04-09,Showmatch (sim),Caccia98,Obrun2002,7,10,Simulated demo
-2026-04-09,FC Pro Leagues (sim),Obrun2002,Jonny,17,10,Simulated demo
-2026-04-11,FC Pro Open (sim),GuiBarros,Tekkz,4,15,Simulated demo
-2026-04-12,FC Pro Open (sim),KSofuoglu,Caccia98,7,10,Simulated demo
-2026-04-12,FC Pro Leagues (sim),Mark11,Gueric,7,11,Simulated demo
-2026-04-14,Showmatch (sim),GuiBarros,Caccia98,5,11,Simulated demo
-2026-04-15,Showmatch (sim),Tekkz,GuiBarros,4,9,Simulated demo
-2026-04-16,FC Pro Open (sim),Neat,Tekkz,12,12,Simulated demo
-2026-04-20,FC Pro Open (sim),Gueric,KSofuoglu,5,12,Simulated demo
-2026-04-22,Showmatch (sim),Neat,Gueric,14,6,Simulated demo
-2026-04-22,FC Pro Open (sim),Gueric,KSofuoglu,8,15,Simulated demo
-2026-04-23,FC Pro Leagues (sim),GuiBarros,Tekkz,6,12,Simulated demo
-2026-04-24,FC Pro Leagues (sim),KSofuoglu,Obrun2002,5,13,Simulated demo
-2026-04-24,FC Pro Open (sim),Jonny,Gueric,4,5,Simulated demo
-2026-04-26,Showmatch (sim),Obrun2002,Jonny,7,10,Simulated demo
-2026-04-26,FC Pro Open (sim),GuiBarros,Mark11,8,9,Simulated demo
-2026-04-27,FC Pro Leagues (sim),levyfinn,Mark11,10,8,Simulated demo
-2026-04-30,FC Pro Open (sim),Obrun2002,Jonny,15,8,Simulated demo
-2026-05-01,Showmatch (sim),Tekkz,levyfinn,13,4,Simulated demo
-2026-05-02,FC Pro Leagues (sim),levyfinn,GuiBarros,10,11,Simulated demo
-2026-05-02,Showmatch (sim),Neat,KSofuoglu,5,9,Simulated demo
-2026-05-02,FC Pro Leagues (sim),Neat,Tekkz,8,12,Simulated demo
-2026-05-04,Showmatch (sim),Jonny,GuiBarros,11,5,Simulated demo
-2026-05-04,FC Pro Leagues (sim),Neat,Jonny,7,5,Simulated demo
-2026-05-08,FC Pro Open (sim),KSofuoglu,Neat,13,11,Simulated demo
-2026-05-08,Showmatch (sim),Tekkz,Brice,8,11,Simulated demo
-2026-05-09,FC Pro Open (sim),Neat,GuiBarros,18,6,Simulated demo
-2026-05-11,FC Pro Open (sim),Obrun2002,Brice,16,7,Simulated demo
-2026-05-11,FC Pro Leagues (sim),Tekkz,levyfinn,12,5,Simulated demo
-2026-05-11,FC Pro Leagues (sim),Obrun2002,Mark11,8,10,Simulated demo
-2026-05-13,FC Pro Leagues (sim),Neat,KSofuoglu,10,12,Simulated demo
-2026-05-13,FC Pro Leagues (sim),levyfinn,Tekkz,5,10,Simulated demo
-2026-05-17,Showmatch (sim),Caccia98,Neat,5,10,Simulated demo
-2026-05-21,FC Pro Leagues (sim),Mark11,levyfinn,4,5,Simulated demo
-2026-05-21,Showmatch (sim),Brice,Gueric,7,9,Simulated demo
-2026-05-23,Showmatch (sim),GuiBarros,Obrun2002,6,12,Simulated demo
-2026-05-24,FC Pro Leagues (sim),Jonny,Mark11,7,7,Simulated demo
-2026-05-26,Showmatch (sim),KSofuoglu,Obrun2002,11,5,Simulated demo
-2026-05-26,Showmatch (sim),Neat,levyfinn,21,4,Simulated demo
-2026-05-26,Showmatch (sim),Jonny,Neat,7,4,Simulated demo
-2026-05-29,FC Pro Open (sim),Brice,levyfinn,8,12,Simulated demo
-2026-05-30,FC Pro Open (sim),Gueric,GuiBarros,12,5,Simulated demo
-2026-06-01,FC Pro Open (sim),Caccia98,Tekkz,14,10,Simulated demo
-2026-06-01,FC Pro Leagues (sim),GuiBarros,KSofuoglu,5,10,Simulated demo
-2026-06-02,FC Pro Open (sim),Obrun2002,GuiBarros,16,3,Simulated demo
-2026-06-02,Showmatch (sim),Caccia98,Tekkz,7,12,Simulated demo
-2026-06-04,Showmatch (sim),Neat,Caccia98,13,10,Simulated demo
-2026-06-04,FC Pro Open (sim),GuiBarros,Brice,7,5,Simulated demo
-2026-06-05,FC Pro Leagues (sim),Gueric,Tekkz,4,8,Simulated demo
-2026-06-06,Showmatch (sim),Mark11,Neat,7,12,Simulated demo
-2026-06-07,FC Pro Leagues (sim),GuiBarros,levyfinn,10,11,Simulated demo
-2026-06-07,FC Pro Leagues (sim),Mark11,Neat,10,14,Simulated demo
-2026-06-08,FC Pro Open (sim),KSofuoglu,Mark11,14,7,Simulated demo
-2026-06-08,FC Pro Open 26 Finals QF,Vejrgang,ManuBachoore,6,5,EWC 2026 Play-Ins (real)
-2026-06-08,FC Pro Open 26 Finals QF,Danipitbull,Nassada,7,6,EWC 2026 Play-Ins (real)
-2026-06-08,FC Pro Open 26 Finals SF,Vejrgang,Levi de Weerd,6,5,EWC 2026 Play-Ins (real)
-2026-06-08,FC Pro Open 26 Finals QF,EmreYilmaz,HHezerS,8,7,EWC 2026 Play-Ins (real)
-2026-06-08,FC Pro Open 26 Finals,Vejrgang,EmreYilmaz,4,1,EWC 2026 Play-Ins (real)
-2026-06-08,FC Pro Open (sim),Caccia98,GuiBarros,12,6,Simulated demo
-2026-06-08,Showmatch (sim),Neat,Jonny,13,11,Simulated demo
-2026-06-08,Showmatch (sim),Mark11,Tekkz,5,7,Simulated demo
-2026-06-08,FC Pro Open 26 Finals SF,EmreYilmaz,Danipitbull,9,5,EWC 2026 Play-Ins (real)
-2026-06-10,Showmatch (sim),levyfinn,KSofuoglu,6,6,Simulated demo
-2026-06-11,FC Pro Leagues (sim),Gueric,Obrun2002,10,14,Simulated demo
-2026-06-13,FC Pro Leagues (sim),Obrun2002,Gueric,10,5,Simulated demo
-2026-06-15,FC Pro Leagues (sim),Mark11,levyfinn,9,11,Simulated demo
-2026-06-15,FC Pro Leagues (sim),Mark11,Jonny,5,13,Simulated demo
-2026-06-15,Showmatch (sim),Neat,KSofuoglu,7,14,Simulated demo
-2026-06-16,FC Pro Leagues (sim),Neat,Obrun2002,5,10,Simulated demo
-2026-06-16,FC Pro Open (sim),Tekkz,Obrun2002,12,13,Simulated demo
-2026-06-17,FC Pro Leagues (sim),Neat,Jonny,18,8,Simulated demo
-2026-06-18,Showmatch (sim),Jonny,Brice,12,12,Simulated demo
-2026-06-19,FC Pro Leagues (sim),Neat,levyfinn,12,4,Simulated demo
-2026-06-19,Showmatch (sim),GuiBarros,Tekkz,13,8,Simulated demo
-2026-06-19,FC Pro Open (sim),Mark11,Brice,12,13,Simulated demo
-2026-06-20,FC Pro Open (sim),Tekkz,Jonny,7,9,Simulated demo
-2026-06-20,FC Pro Open (sim),Obrun2002,Gueric,13,10,Simulated demo
-2026-06-21,FC Pro Leagues (sim),Brice,KSofuoglu,9,15,Simulated demo
-2026-06-21,FC Pro Leagues (sim),Mark11,Obrun2002,9,11,Simulated demo
-2026-06-22,FC Pro Open (sim),KSofuoglu,Jonny,14,8,Simulated demo
-2026-06-22,FC Pro Open (sim),Mark11,Gueric,3,6,Simulated demo
-2026-06-23,Showmatch (sim),Tekkz,Gueric,8,12,Simulated demo
-2026-06-23,FC Pro Leagues (sim),Caccia98,Obrun2002,8,17,Simulated demo
-2026-06-24,Showmatch (sim),Jonny,GuiBarros,9,6,Simulated demo
-2026-06-24,FC Pro Open (sim),Brice,GuiBarros,12,7,Simulated demo
-2026-06-25,Showmatch (sim),Tekkz,GuiBarros,18,6,Simulated demo
-2026-06-26,FC Pro Open (sim),Caccia98,Gueric,8,9,Simulated demo
-2026-06-28,Showmatch (sim),Gueric,Tekkz,9,8,Simulated demo
-2026-06-29,FC Pro Open (sim),Mark11,Obrun2002,8,12,Simulated demo
-2026-06-30,Showmatch (sim),KSofuoglu,Neat,8,11,Simulated demo
-2026-06-30,FC Pro Leagues (sim),levyfinn,GuiBarros,3,0,Simulated demo
-2026-07-03,FC Pro Open (sim),Caccia98,levyfinn,16,7,Simulated demo
-2026-07-03,Showmatch (sim),Tekkz,Mark11,8,10,Simulated demo
-2026-07-03,FC Pro Open (sim),Gueric,Caccia98,8,5,Simulated demo
-2026-07-04,Showmatch (sim),Tekkz,KSofuoglu,11,14,Simulated demo
-2026-07-05,Showmatch (sim),Neat,Caccia98,7,10,Simulated demo
-2026-07-06,FC Pro Open (sim),Tekkz,GuiBarros,13,5,Simulated demo
-2026-07-06,FC Pro Open (sim),Obrun2002,Gueric,15,7,Simulated demo
-2026-07-06,FC Pro Open (sim),Tekkz,Brice,20,13,Simulated demo
-2026-07-07,Showmatch (sim),Brice,GuiBarros,9,11,Simulated demo
-2026-07-08,FC Pro Leagues (sim),levyfinn,Brice,6,8,Simulated demo
-2026-07-08,Showmatch (sim),Caccia98,KSofuoglu,4,9,Simulated demo
-2026-07-09,FC Pro Open (sim),Neat,Gueric,9,11,Simulated demo
-2026-07-09,Showmatch (sim),Jonny,GuiBarros,19,5,Simulated demo
-2026-07-10,FC Pro Open (sim),Brice,Caccia98,7,12,Simulated demo
-2026-07-10,FC Pro Open (sim),GuiBarros,Obrun2002,4,17,Simulated demo
-2026-07-12,EWC 2026 Play-Ins,Obrun2002,GuiBarros,15,2,EWC 2026 Play-Ins (real)
-2026-07-12,EWC 2026 Play-Ins,Gueric,levyfinn,14,7,EWC 2026 Play-Ins (real)
-2026-07-12,EWC 2026 Play-Ins,KSofuoglu,Brice,13,7,EWC 2026 Play-Ins (real)
-2026-07-12,EWC 2026 Play-Ins,Caccia98,Mark11,9,8,EWC 2026 Play-Ins (real)
-2026-07-12,EWC 2026 Play-Ins,Neat,Tekkz,17,6,EWC 2026 Play-Ins (real)
+"""Core data + prediction logic for the esports soccer tracker.
+
+Kept free of Streamlit imports so it can be unit-tested standalone.
+"""
+
+from __future__ import annotations
+
+import math
+from dataclasses import dataclass
+
+import numpy as np
+import pandas as pd
+
+REQUIRED_COLUMNS = [
+    "date", "stage", "player_a", "player_b", "goals_a", "goals_b", "source",
+]
+
+# Shrinkage weight: how many "phantom" league-average matches to blend into a
+# player's rates. Guards against tiny samples producing extreme lambdas.
+SHRINK_K = 3.0
+
+MAX_GOALS_GRID = 45  # per-player grid size for the Poisson joint distribution
+
+
+def load_matches(path_or_buffer) -> pd.DataFrame:
+    """Load and validate a matches CSV."""
+    df = pd.read_csv(path_or_buffer)
+    missing = [c for c in REQUIRED_COLUMNS if c not in df.columns]
+    if missing:
+        raise ValueError(f"CSV is missing required columns: {missing}")
+    df = df.copy()
+    df["date"] = pd.to_datetime(df["date"], errors="coerce")
+    df["goals_a"] = pd.to_numeric(df["goals_a"], errors="coerce")
+    df["goals_b"] = pd.to_numeric(df["goals_b"], errors="coerce")
+    df = df.dropna(subset=["date", "player_a", "player_b", "goals_a", "goals_b"])
+    df["goals_a"] = df["goals_a"].astype(int)
+    df["goals_b"] = df["goals_b"].astype(int)
+    df["total_goals"] = df["goals_a"] + df["goals_b"]
+    return df.sort_values("date").reset_index(drop=True)
+
+
+def long_form(df: pd.DataFrame) -> pd.DataFrame:
+    """One row per player per match (perspective table)."""
+    a = df.rename(columns={
+        "player_a": "player", "player_b": "opponent",
+        "goals_a": "gf", "goals_b": "ga",
+    })[["date", "stage", "player", "opponent", "gf", "ga", "source"]]
+    b = df.rename(columns={
+        "player_b": "player", "player_a": "opponent",
+        "goals_b": "gf", "goals_a": "ga",
+    })[["date", "stage", "player", "opponent", "gf", "ga", "source"]]
+    out = pd.concat([a, b], ignore_index=True)
+    out["result"] = np.select(
+        [out.gf > out.ga, out.gf == out.ga], ["W", "D"], default="L"
+    )
+    out["gd"] = out["gf"] - out["ga"]
+    return out.sort_values("date").reset_index(drop=True)
+
+
+def player_table(lf: pd.DataFrame) -> pd.DataFrame:
+    """Aggregate per-player stats from the long-form table."""
+    g = lf.groupby("player")
+    t = pd.DataFrame({
+        "matches": g.size(),
+        "wins": g["result"].apply(lambda s: (s == "W").sum()),
+        "draws": g["result"].apply(lambda s: (s == "D").sum()),
+        "losses": g["result"].apply(lambda s: (s == "L").sum()),
+        "gf": g["gf"].sum(),
+        "ga": g["ga"].sum(),
+    })
+    t["win_rate"] = t["wins"] / t["matches"]
+    t["gf_pm"] = t["gf"] / t["matches"]
+    t["ga_pm"] = t["ga"] / t["matches"]
+    t["gd_pm"] = t["gf_pm"] - t["ga_pm"]
+    return t.sort_values(["win_rate", "gd_pm"], ascending=False)
+
+
+@dataclass
+class Prediction:
+    player_a: str
+    player_b: str
+    lambda_a: float
+    lambda_b: float
+    p_win_a: float
+    p_draw: float
+    p_win_b: float
+    expected_total: float
+    line: float
+    p_over: float
+    p_under: float
+    n_a: int
+    n_b: int
+
+    def fair_odds(self, p: float) -> float:
+        return float("inf") if p <= 0 else 1.0 / p
+
+
+def _shrunk_rate(total: float, n: int, league_rate: float) -> float:
+    """Blend a player's observed per-match rate toward the league average."""
+    return (total + SHRINK_K * league_rate) / (n + SHRINK_K)
+
+
+def predict(df: pd.DataFrame, player_a: str, player_b: str,
+            line: float = 16.5, allow_unknown: bool = False) -> Prediction:
+    """Poisson model: attack/defense rates -> joint score distribution.
+
+    lambda_A = shrunk_attack_A * (shrunk_defense_B / league_avg)
+    Win/draw probs come from the joint independent-Poisson grid; over/under
+    from the distribution of the total (sum of two Poissons is Poisson).
+    """
+    lf = long_form(df)
+    league_avg = lf["gf"].mean()  # avg goals per player per match
+    if not np.isfinite(league_avg) or league_avg <= 0:
+        raise ValueError("Not enough data to build a model.")
+
+    rates = {}
+    for p in (player_a, player_b):
+        rows = lf[lf.player == p]
+        n = len(rows)
+        if n == 0 and not allow_unknown:
+            raise ValueError(f"No matches on record for {p}.")
+        rates[p] = {
+            "n": n,
+            "attack": _shrunk_rate(rows["gf"].sum(), n, league_avg),
+            "defense": _shrunk_rate(rows["ga"].sum(), n, league_avg),
+        }
+
+    lam_a = rates[player_a]["attack"] * rates[player_b]["defense"] / league_avg
+    lam_b = rates[player_b]["attack"] * rates[player_a]["defense"] / league_avg
+    lam_a = float(np.clip(lam_a, 0.05, MAX_GOALS_GRID / 2))
+    lam_b = float(np.clip(lam_b, 0.05, MAX_GOALS_GRID / 2))
+
+    k = np.arange(MAX_GOALS_GRID + 1)
+    log_fact = np.array([math.lgamma(i + 1) for i in k])
+    pmf_a = np.exp(k * math.log(lam_a) - lam_a - log_fact)
+    pmf_b = np.exp(k * math.log(lam_b) - lam_b - log_fact)
+    joint = np.outer(pmf_a, pmf_b)  # joint[i, j] = P(A scores i, B scores j)
+
+    p_win_a = float(np.tril(joint, -1).sum())  # i > j
+    p_draw = float(np.trace(joint))
+    p_win_b = float(np.triu(joint, 1).sum())  # j > i
+
+    # Total goals: Poisson(lam_a + lam_b)
+    lam_t = lam_a + lam_b
+    kt = np.arange(2 * MAX_GOALS_GRID + 1)
+    log_fact_t = np.array([math.lgamma(i + 1) for i in kt])
+    pmf_t = np.exp(kt * math.log(lam_t) - lam_t - log_fact_t)
+    p_under = float(pmf_t[kt <= math.floor(line)].sum())
+    p_over = 1.0 - p_under
+
+    return Prediction(
+        player_a=player_a, player_b=player_b,
+        lambda_a=lam_a, lambda_b=lam_b,
+        p_win_a=p_win_a, p_draw=p_draw, p_win_b=p_win_b,
+        expected_total=lam_t, line=line, p_over=p_over, p_under=p_under,
+        n_a=rates[player_a]["n"], n_b=rates[player_b]["n"],
+    )
+
+
+def total_goals_pmf(pred: Prediction, upto: int | None = None) -> pd.DataFrame:
+    """Distribution of total goals for a prediction (for charting)."""
+    lam_t = pred.lambda_a + pred.lambda_b
+    hi = upto or int(min(2 * MAX_GOALS_GRID, math.ceil(lam_t + 4 * math.sqrt(lam_t))))
+    kt = np.arange(hi + 1)
+    pmf = np.exp(kt * math.log(lam_t) - lam_t
+                 - np.array([math.lgamma(i + 1) for i in kt]))
+    return pd.DataFrame({"total_goals": kt, "probability": pmf})
+
+
+def prob_over(pred: Prediction, line: float) -> float:
+    """P(total goals > line) for an existing prediction, any .5 line."""
+    lam_t = pred.lambda_a + pred.lambda_b
+    kt = np.arange(int(math.floor(line)) + 1)
+    log_fact = np.array([math.lgamma(i + 1) for i in kt])
+    p_under = float(np.exp(kt * math.log(lam_t) - lam_t - log_fact).sum())
+    return 1.0 - p_under
