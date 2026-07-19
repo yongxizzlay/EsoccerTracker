@@ -1,51 +1,108 @@
-# ⚽ Esports Soccer Tracker
+"""ESportsBattle (football.esportsbattle.com) API client.
 
-A Streamlit dashboard for tracking the pro esports soccer scene (EA SPORTS FC /
-FC Pro) with stats, charts, and Poisson-model predictions for match winners and
-over/under total goals.
+Public JSON endpoints observed from the site:
+  GET /api/tournaments?dateFrom=YYYY-MM-DD HH:MM&dateTo=...&page=N
+      -> {"totalPages": int, "tournaments": [...]}
+  GET /api/tournaments/{id}/matches -> [match, ...]
 
-## Run it
+Status ids (observed): tournament 2=upcoming, 3=live, 4=finished;
+match 1=scheduled, 3=finished (scores set).
 
-```bash
-pip install -r requirements.txt
-streamlit run app.py
-```
+Times in the API are UTC.
+"""
 
-## What's inside
+from __future__ import annotations
 
-- **Overview** — headline stats, total-goals distribution with your O/U line
-  marked, weekly scoring trend.
-- **Players** — win-rate leaderboard, attack vs defense per match, cumulative
-  goal-difference form chart, full stats table.
-- **Matches** — browsable match log, a form to log new results, CSV
-  import/export from the sidebar.
-- **Predictions** — pick two players and a total-goals line; get win/draw/win
-  probabilities, over/under probabilities, fair (break-even) decimal odds, and
-  the modelled total-goals distribution.
+from datetime import datetime, timedelta, timezone
 
-## Data
+import pandas as pd
+import requests
 
-`data/matches.csv` ships with **5 real results** from the FC Pro 26 World
-Championship Play-Ins at Esports World Cup 2026, plus **130 simulated matches**
-(clearly labeled `Simulated demo` in the `source` column) so the charts and
-model have enough history to be interesting. Untick *"Include simulated demo
-matches"* in the sidebar to work from real results only, or import your own CSV
-with columns:
+BASE = "https://football.esportsbattle.com/api"
+HEADERS = {"User-Agent": "esoccer-tracker/1.0 (personal stats project)"}
+TIMEOUT = 20
 
-```
-date, stage, player_a, player_b, goals_a, goals_b, source
-```
+MATCH_FINISHED = 3
+MATCH_SCHEDULED = 1
+TOURN_FINISHED = 4
 
-Regenerate the bundled dataset any time with `python gen_demo_data.py`.
 
-## The model (and a warning)
+def _get(path: str, params: dict | None = None):
+    r = requests.get(f"{BASE}{path}", params=params, headers=HEADERS,
+                     timeout=TIMEOUT)
+    r.raise_for_status()
+    return r.json()
 
-Attack/defense rates per player, shrunk toward the league average, feed
-independent Poisson score distributions; win/draw probabilities come from the
-joint grid and total goals from `Poisson(λ_A + λ_B)`. Fair odds are
-`1 ÷ probability`.
 
-**This is not betting advice.** The sample is small, esports form is volatile,
-and the model knows nothing about patches, formats, lag, or motivation. If you
-bet, treat the output as one rough input, expect it to be wrong often, and only
-stake what you can afford to lose.
+def _fmt(dt: datetime) -> str:
+    return dt.astimezone(timezone.utc).strftime("%Y-%m-%d %H:%M")
+
+
+def fetch_tournaments(date_from: datetime, date_to: datetime,
+                      max_pages: int = 20) -> list[dict]:
+    """All tournaments whose start falls in [date_from, date_to] (UTC)."""
+    out: list[dict] = []
+    page = 1
+    while page <= max_pages:
+        data = _get("/tournaments", {
+            "dateFrom": _fmt(date_from), "dateTo": _fmt(date_to),
+            "page": page,
+        })
+        out.extend(data.get("tournaments", []))
+        if page >= int(data.get("totalPages", 1)):
+            break
+        page += 1
+    return out
+
+
+def fetch_tournament_matches(tournament_id: int) -> list[dict]:
+    data = _get(f"/tournaments/{tournament_id}/matches")
+    return data if isinstance(data, list) else data.get("matches", [])
+
+
+def league_name(t: dict) -> str:
+    lg = t.get("league") or {}
+    return lg.get("token_international") or lg.get("token") or "Unknown league"
+
+
+def matches_to_rows(tournament: dict, matches: list[dict]) -> list[dict]:
+    """Normalize raw match dicts to tracker rows (finished + scheduled)."""
+    rows = []
+    lg = league_name(tournament)
+    for m in matches:
+        p1 = m.get("participant1") or {}
+        p2 = m.get("participant2") or {}
+        n1, n2 = p1.get("nickname"), p2.get("nickname")
+        if not n1 or not n2:
+            continue
+        rows.append({
+            "match_id": m.get("id"),
+            "date": m.get("date"),
+            "stage": lg,
+            "player_a": n1, "player_b": n2,
+            "team_a": ((p1.get("team") or {}).get("token_international")),
+            "team_b": ((p2.get("team") or {}).get("token_international")),
+            "goals_a": p1.get("score"), "goals_b": p2.get("score"),
+            "status_id": m.get("status_id"),
+            "source": "ESportsBattle",
+        })
+    return rows
+
+
+def split_finished_upcoming(rows: list[dict]) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """-> (finished results df compatible with core.load semantics, upcoming df)."""
+    df = pd.DataFrame(rows)
+    if df.empty:
+        empty = pd.DataFrame(columns=["date", "stage", "player_a", "player_b",
+                                      "goals_a", "goals_b", "source"])
+        return empty, empty.copy()
+    df["date"] = pd.to_datetime(df["date"], utc=True, errors="coerce")
+    fin = df[(df.status_id == MATCH_FINISHED)
+             & df.goals_a.notna() & df.goals_b.notna()].copy()
+    if not fin.empty:
+        fin["goals_a"] = fin.goals_a.astype(int)
+        fin["goals_b"] = fin.goals_b.astype(int)
+        fin["total_goals"] = fin.goals_a + fin.goals_b
+    up = df[df.status_id == MATCH_SCHEDULED].copy()
+    return fin.sort_values("date").reset_index(drop=True), \
+        up.sort_values("date").reset_index(drop=True)
