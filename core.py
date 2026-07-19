@@ -101,7 +101,7 @@ def _shrunk_rate(total: float, n: int, league_rate: float) -> float:
 
 
 def predict(df: pd.DataFrame, player_a: str, player_b: str,
-            line: float = 16.5) -> Prediction:
+            line: float = 16.5, allow_unknown: bool = False) -> Prediction:
     """Poisson model: attack/defense rates -> joint score distribution.
 
     lambda_A = shrunk_attack_A * (shrunk_defense_B / league_avg)
@@ -117,7 +117,7 @@ def predict(df: pd.DataFrame, player_a: str, player_b: str,
     for p in (player_a, player_b):
         rows = lf[lf.player == p]
         n = len(rows)
-        if n == 0:
+        if n == 0 and not allow_unknown:
             raise ValueError(f"No matches on record for {p}.")
         rates[p] = {
             "n": n,

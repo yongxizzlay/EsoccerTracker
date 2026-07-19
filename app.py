@@ -12,6 +12,7 @@ import plotly.graph_objects as go
 import streamlit as st
 
 import core
+import esb
 
 # ---------------------------------------------------------------- palette ----
 # Validated light-mode palette (see dataviz reference palette).
@@ -104,8 +105,8 @@ lf = core.long_form(df)
 ptable = core.player_table(lf)
 players = ptable.index.tolist()
 
-tab_overview, tab_players, tab_matches, tab_predict = st.tabs(
-    ["Overview", "Players", "Matches", "Predictions"]
+tab_overview, tab_players, tab_matches, tab_predict, tab_live = st.tabs(
+    ["Overview", "Players", "Matches", "Predictions", "🔴 Live: ESportsBattle"]
 )
 
 # --------------------------------------------------------------- overview ----
@@ -326,4 +327,124 @@ with tab_predict:
             "decimal odds if the model were exactly right (it isn't). A "
             "bookmaker price above fair odds is only 'value' if you trust "
             "the model more than the market, which you usually shouldn't."
+        )
+
+# ------------------------------------------------------- live esportsbattle ----
+with tab_live:
+    st.markdown(
+        "Live schedule and results from "
+        "[football.esportsbattle.com](https://football.esportsbattle.com). "
+        "History trains the model; upcoming matches get win/draw/win and "
+        "over/under estimates."
+    )
+    st.info(
+        "**Model estimates, not betting advice.** ESportsBattle matches are "
+        "short (2×4 or 2×6 min), high-variance, and bookmakers price them "
+        "with more data than this. Expect the model to be wrong often."
+    )
+
+    lc1, lc2, lc3, lc4 = st.columns(4)
+    hist_hours = lc1.slider("History window (hours)", 6, 72, 24, step=6)
+    ahead_hours = lc2.slider("Look ahead (hours)", 1, 24, 8)
+    live_line = lc3.number_input("O/U line (per match)", 0.5, 20.5, 5.5,
+                                 step=1.0, key="live_line")
+    tz_name = lc4.selectbox("Show times in", ["Pacific/Auckland", "UTC"])
+
+    @st.cache_data(ttl=600, show_spinner=False)
+    def _esb_pull(hist_h: int, ahead_h: int):
+        from datetime import datetime, timedelta, timezone
+        now = datetime.now(timezone.utc)
+        tourns = esb.fetch_tournaments(now - timedelta(hours=hist_h),
+                                       now + timedelta(hours=ahead_h))
+        rows = []
+        for t in tourns:
+            try:
+                rows.extend(esb.matches_to_rows(
+                    t, esb.fetch_tournament_matches(t["id"])))
+            except Exception:
+                continue  # skip a tournament that errors; keep the rest
+        return esb.split_finished_upcoming(rows), len(tourns)
+
+    if st.button("Fetch / refresh ESportsBattle data", type="primary"):
+        _esb_pull.clear()
+
+    try:
+        with st.spinner("Pulling tournaments and matches…"):
+            (fin, up), n_tourns = _esb_pull(hist_hours, ahead_hours)
+    except Exception as e:
+        st.error(f"Could not reach the ESportsBattle API: {e}")
+        st.stop()
+
+    if fin.empty:
+        st.warning("No finished matches in this window — widen the history "
+                   "slider.")
+        st.stop()
+
+    leagues = sorted(set(fin.stage) | set(up.stage if not up.empty else []))
+    lsel = st.multiselect(
+        "Leagues (match formats differ — compare like with like)",
+        leagues, default=leagues,
+    )
+    fin_f = fin[fin.stage.isin(lsel)]
+    up_f = up[up.stage.isin(lsel)] if not up.empty else up
+
+    k1, k2, k3, k4 = st.columns(4)
+    k1.metric("Finished matches", f"{len(fin_f)}")
+    k2.metric("Tournaments scanned", f"{n_tourns}")
+    k3.metric("Avg total goals", f"{fin_f.total_goals.mean():.2f}")
+    k4.metric(f"Over {live_line} hit rate",
+              f"{(fin_f.total_goals > live_line).mean():.0%}")
+
+    if up_f.empty:
+        st.warning("No scheduled matches in the look-ahead window.")
+    else:
+        hist_df = fin_f[["date", "stage", "player_a", "player_b",
+                         "goals_a", "goals_b", "source"]].copy()
+        preds = []
+        for _, r in up_f.iterrows():
+            try:
+                p = core.predict(hist_df, r.player_a, r.player_b,
+                                 line=live_line, allow_unknown=True)
+            except ValueError:
+                continue
+            when = r.date.tz_convert(tz_name)
+            thin = min(p.n_a, p.n_b) < 5
+            preds.append({
+                "Kick-off": when.strftime("%H:%M"),
+                "League": r.stage,
+                "Match": (f"{r.player_a}"
+                          + (f" ({r.team_a})" if pd.notna(r.team_a) else "")
+                          + " v " + f"{r.player_b}"
+                          + (f" ({r.team_b})" if pd.notna(r.team_b) else "")),
+                "Sample": f"{p.n_a}/{p.n_b}" + (" ⚠" if thin else ""),
+                "P(1)": p.p_win_a, "P(X)": p.p_draw, "P(2)": p.p_win_b,
+                "Fair 1": p.fair_odds(p.p_win_a),
+                "Fair X": p.fair_odds(p.p_draw),
+                "Fair 2": p.fair_odds(p.p_win_b),
+                "E[goals]": p.expected_total,
+                f"P(o{live_line})": p.p_over,
+                f"Fair over": p.fair_odds(p.p_over),
+            })
+        if preds:
+            pdf = pd.DataFrame(preds)
+            pct_cols = ["P(1)", "P(X)", "P(2)", f"P(o{live_line})"]
+            odd_cols = ["Fair 1", "Fair X", "Fair 2", "Fair over"]
+            st.markdown(f"**Upcoming matches ({len(pdf)})** — times in "
+                        f"{tz_name}. ⚠ = fewer than 5 matches of history for "
+                        "a player (prediction leans on the league average).")
+            st.dataframe(
+                pdf.style.format({c: "{:.0%}" for c in pct_cols}
+                                | {c: "{:.2f}" for c in odd_cols}
+                                | {"E[goals]": "{:.1f}"}),
+                use_container_width=True, hide_index=True,
+            )
+        else:
+            st.warning("Couldn't build predictions for the scheduled matches.")
+
+    with st.expander("Recent results used to train the model"):
+        st.dataframe(
+            fin_f.sort_values("date", ascending=False)[
+                ["date", "stage", "player_a", "goals_a",
+                 "goals_b", "player_b"]],
+            use_container_width=True, hide_index=True,
         )

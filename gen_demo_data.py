@@ -7,14 +7,20 @@ Run: python gen_demo_data.py  (rewrites data/matches.csv deterministically)
 import numpy as np
 import pandas as pd
 
-# Real aggregate results from the FC Pro 26 World Championship Play-Ins at
-# Esports World Cup 2026 (source: egamersworld.com event page, July 2026).
+# Real results (sources: egamersworld.com event page; ea.com FC Pro Open 26
+# Finals review — July 2026). Play-in scores are two-leg aggregates.
 REAL = [
-    ("2026-07-17", "EWC 2026 Play-Ins", "Caccia98", "Mark11", 9, 8),
-    ("2026-07-17", "EWC 2026 Play-Ins", "KSofuoglu", "Brice", 13, 7),
-    ("2026-07-17", "EWC 2026 Play-Ins", "Gueric", "levyfinn", 14, 7),
-    ("2026-07-17", "EWC 2026 Play-Ins", "Obrun2002", "GuiBarros", 15, 2),
-    ("2026-07-17", "EWC 2026 Play-Ins", "Neat", "Tekkz", 17, 6),
+    ("2026-07-12", "EWC 2026 Play-Ins", "Caccia98", "Mark11", 9, 8),
+    ("2026-07-12", "EWC 2026 Play-Ins", "KSofuoglu", "Brice", 13, 7),
+    ("2026-07-12", "EWC 2026 Play-Ins", "Gueric", "levyfinn", 14, 7),
+    ("2026-07-12", "EWC 2026 Play-Ins", "Obrun2002", "GuiBarros", 15, 2),
+    ("2026-07-12", "EWC 2026 Play-Ins", "Neat", "Tekkz", 17, 6),
+    ("2026-06-08", "FC Pro Open 26 Finals QF", "Vejrgang", "ManuBachoore", 6, 5),
+    ("2026-06-08", "FC Pro Open 26 Finals QF", "EmreYilmaz", "HHezerS", 8, 7),
+    ("2026-06-08", "FC Pro Open 26 Finals QF", "Danipitbull", "Nassada", 7, 6),
+    ("2026-06-08", "FC Pro Open 26 Finals SF", "Vejrgang", "Levi de Weerd", 6, 5),
+    ("2026-06-08", "FC Pro Open 26 Finals SF", "EmreYilmaz", "Danipitbull", 9, 5),
+    ("2026-06-08", "FC Pro Open 26 Finals", "Vejrgang", "EmreYilmaz", 4, 1),
 ]
 
 # Rough skill tiers for the simulated history (attack, defense) in goals per
